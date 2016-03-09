@@ -71,6 +71,20 @@ toc <- function() {
 
 
 
+#' Function to run lapply or mclapply, depending on the option set in
+#' getOption("mc.cores"), which can be set with setLapplyAlias().
+#'
+#' @param ... Arguments passed lapply() or mclapply()
+#' @return Result from lapply 0r parallel::mclapply
+lapplyAlias = function(..., mc.preschedule=TRUE) {
+	if (is.null(getOption("mc.cores"))) { setLapplyAlias(1) }
+	if(getOption("mc.cores") > 1) {
+		return(parallel::mclapply(..., mc.preschedule=mc.preschedule))
+	} else {
+		return(lapply(...))
+	}
+}
+
 
 
 

@@ -87,7 +87,7 @@ simpleCache = function(cacheName, instruction=NULL, buildEnvir=NULL, reload=FALS
 		return(NA);
 	}
 	if(! "character" %in% class(cacheName)) {
-		stop("simpleCache expects the cacheName variable to be a character vector.");
+		stop(paste0("simpleCache expects the cacheName variable to be a character vector (it's a ", class(cacheName), "."));
 	}
 
 	cacheDir=enforceTrailingSlash(cacheDir);
